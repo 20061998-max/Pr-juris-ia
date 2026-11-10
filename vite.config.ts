@@ -11,6 +11,18 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    import { defineConfig } from 'vite';
+
+export default defineConfig({
+  server: {
+    allowedHosts: [
+      'pr-juris-ia.onrender.com',
+      // ou use true para permitir qualquer host (menos seguro, mas útil em testes):
+      // allowedHosts: true,
+    ],
+  },
+});
+  
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
