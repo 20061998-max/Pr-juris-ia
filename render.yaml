@@ -1,0 +1,22 @@
+# Render Blueprint Configuration
+# Documentação: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: jurisai-pro
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: APP_URL
+        sync: false

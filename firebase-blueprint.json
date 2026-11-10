@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Usuário ou advogado com licença do JurisAI Pro.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID único do usuário" },
+        "name": { "type": "string", "description": "Nome completo" },
+        "cpf": { "type": "string", "description": "CPF formatado ou dígitos" },
+        "email": { "type": "string", "description": "E-mail de contato" },
+        "phone": { "type": "string", "description": "Telefone ou WhatsApp" },
+        "role": { "type": "string", "enum": ["user", "admin"], "description": "Perfil de acesso" },
+        "status": { "type": "string", "enum": ["active", "pending", "blocked", "expired"], "description": "Status da licença" },
+        "licenseType": { "type": "string", "enum": ["trial", "pro", "enterprise"], "description": "Tipo de plano" },
+        "areaAtuacao": { "type": "string", "description": "Ramo do Direito principal" },
+        "createdAt": { "type": "string", "description": "Data de criação em ISO" },
+        "expiresAt": { "type": "string", "description": "Data de expiração da licença em ISO" },
+        "notes": { "type": "string", "description": "Observações do administrador" }
+      },
+      "required": ["id", "name", "cpf", "role", "status", "licenseType", "createdAt", "expiresAt"]
+    },
+    "TrialRequest": {
+      "title": "TrialRequest",
+      "description": "Solicitação pública de período de teste de demonstração.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID da solicitação" },
+        "name": { "type": "string", "description": "Nome do solicitante" },
+        "cpf": { "type": "string", "description": "CPF do solicitante" },
+        "email": { "type": "string", "description": "E-mail de contato" },
+        "phone": { "type": "string", "description": "Telefone / WhatsApp" },
+        "areaAtuacao": { "type": "string", "description": "Área de atuação" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"], "description": "Status da solicitação" },
+        "createdAt": { "type": "string", "description": "Timestamp de solicitação" }
+      },
+      "required": ["id", "name", "cpf", "status", "createdAt"]
+    },
+    "LegalConsultation": {
+      "title": "LegalConsultation",
+      "description": "Registro de consulta ou parecer jurídico gerado no terminal.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID da consulta" },
+        "userCpf": { "type": "string", "description": "CPF do usuário solicitante" },
+        "userName": { "type": "string", "description": "Nome do advogado" },
+        "prompt": { "type": "string", "description": "Consulta jurídica formulada" },
+        "mode": { "type": "string", "description": "Modo de atuação selecionado" },
+        "fileName": { "type": "string", "description": "Nome do processo anexado" },
+        "createdAt": { "type": "string", "description": "Timestamp da consulta" }
+      },
+      "required": ["id", "userCpf", "prompt", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Coleção de licenças e advogados autorizados."
+    },
+    "/trial_requests/{requestId}": {
+      "schema": "TrialRequest",
+      "description": "Coleção de solicitações públicas de período de teste."
+    },
+    "/consultations/{consultationId}": {
+      "schema": "LegalConsultation",
+      "description": "Consultas e auditorias jurídicas realizadas pelos operadores."
+    }
+  }
+}

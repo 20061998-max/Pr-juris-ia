@@ -1,0 +1,6 @@
+{
+  "name": "JurisAI Pro",
+  "description": "Terminal jurídico inteligente com validação e controle de licenças por CPF, gestão de solicitações de teste e auditoria processual com IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
